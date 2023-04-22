@@ -14,15 +14,15 @@ const { v4: uuidv4 } = require('uuid');
 app.use(cors()); // Use the 'cors' package to handle CORS settings
 
 // Rest of your code
-const io = require('socket.io')(server);
+
 
 const PORT = process.env.PORT || 443;
 
 
 
-const privateKey = fs.readFileSync('/path/to/your/private.key', 'utf8');
-const certificate = fs.readFileSync('/path/to/your/certificate.crt', 'utf8');
-const ca = fs.readFileSync('/path/to/your/chain.crt', 'utf8');
+const privateKey = process.env.PRIVATE_KEY;
+const certificate = process.env.CERTIFICATE;
+const ca = process.env.CA;
 
 
 const credentials = {
@@ -32,7 +32,7 @@ const credentials = {
 };
 
 const server = https.createServer(credentials, app);
-
+const io = require('socket.io')(server);
 const leetSpeakPatterns = [
   /1|\b[lI]+\b/gi, // 1, l, L, i, I
   /3|\b[eE]+\b/gi, // 3, e, E
