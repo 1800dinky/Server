@@ -15,9 +15,7 @@ app.use(cors()); // Use the 'cors' package to handle CORS settings
 
 // Rest of your code
 
-
-const PORT = process.env.PORT || 443;
-
+const PORT = process.env.PORT || 8080;
 
 
 const privateKey = process.env.PRIVATE_KEY;
