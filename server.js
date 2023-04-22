@@ -2,6 +2,14 @@ const fs = require('fs');
 const https = require('https');
 const express = require('express');
 const app = require('express')();
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://v6p9d9t4.ssl.hwcdn.net');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 const socketIO = require('socket.io');
 const noise = require('noisejs');
 const request = require('request');
@@ -14,11 +22,7 @@ const { v4: uuidv4 } = require('uuid');
 app.use(cors());
 
 // Set 'Access-Control-Allow-Origin' header in response
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://v6p9d9t4.ssl.hwcdn.net");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+
 // Rest of your code
 const PORT = process.env.PORT || 8080;
 const privateKey = process.env.PRIVATE_KEY;
