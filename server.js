@@ -11,18 +11,19 @@ const rateLimit = require('express-rate-limit');
 const Filter = require('bad-words');
 const { v4: uuidv4 } = require('uuid');
 
-app.use(cors()); // Use the 'cors' package to handle CORS settings
+app.use(cors());
 
+// Set 'Access-Control-Allow-Origin' header in response
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://v6p9d9t4.ssl.hwcdn.net");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 // Rest of your code
-
 const PORT = process.env.PORT || 8080;
-
-
 const privateKey = process.env.PRIVATE_KEY;
 const certificate = process.env.CERTIFICATE;
 const ca = process.env.CA;
-
-
 const credentials = {
   key: privateKey,
   cert: certificate,
